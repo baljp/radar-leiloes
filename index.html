@@ -210,6 +210,24 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 .pwh.on{padding:12px 14px;max-height:260px}.pwh ol{margin:0;padding-left:18px}.pwh li{margin:4px 0}
 .pwl{margin-top:18px;background:none;border:0;color:#b9c0ee;font:500 14px var(--sans);text-decoration:underline;cursor:pointer}
 .docs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.docs a{text-decoration:none}
+.trust{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:#dfe3fb}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:500 11.5px var(--sans);padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--mut);border:1px solid var(--line)}
+.chip.occ{background:var(--ambbg);color:var(--amb);border-color:transparent}.chip.free{background:var(--posbg);color:var(--pos);border-color:transparent}
+.chip.warn{background:var(--negbg);color:var(--neg);border-color:transparent}.chip.st2{background:var(--prombg);color:var(--prom);border-color:transparent}.chip.off{background:#e3e5ee;color:#555b70}
+.vf{color:var(--pos);font-weight:500}
+.card.ended{opacity:.62}
+ul.ck{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.ck li{position:relative;padding-left:28px;font-size:14px;line-height:1.4}
+ul.ck li:before{position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--sans)}
+ul.ck li.y:before{content:"✓";background:var(--posbg);color:var(--pos)}ul.ck li.n:before{content:"!";background:var(--negbg);color:var(--neg)}
+ul.ck li.q:before{content:"?";background:var(--ambbg);color:var(--amb)}ul.ck li.t:before{content:"";border:1.6px solid var(--line2);background:#fff;border-radius:5px;width:16px;height:16px;top:2px}
+ul.ck li.n{font-weight:600;color:#7b1a1d}
+.ft{margin-top:44px;padding:18px 20px;border-radius:var(--r);background:#e9ebf4;color:#4a5068;font-size:12.5px;line-height:1.55}
+.ft b{color:var(--navy)}
+.fbtn{display:none}
+@media (max-width:760px){.fbtn{display:inline-block;flex:0 0 auto}.fl input{flex:1 1 60%}.fl select{display:none}.fl.open select{display:block}
+.trust{gap:4px 14px;font-size:12.5px;margin-top:10px}.hero h1{font-size:25px}}
 </style>
 </head>
 <body>
@@ -227,7 +245,8 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 </div>
 <div class="hero">
 <h1>Leilões de imóveis com desconto de verdade</h1>
-<p>Cada imóvel comparado com anúncios reais do mesmo prédio, rua ou bairro, já com todos os custos do leilão descontados.</p>
+<p>Cada imóvel é conferido na página oficial do banco ou do leiloeiro, comparado com anúncios reais do mesmo prédio, rua ou bairro e mostrado já com os custos do leilão descontados.</p>
+<div class="trust" id="trust"></div>
 </div>
 </div>
 <div class="kp" id="kp"></div>
@@ -240,9 +259,12 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 </div>
 <div class="fl">
 <input type="search" id="q" placeholder="Buscar bairro, rua ou cidade" autocomplete="off">
+<button type="button" class="b2 fbtn" id="fBtn">Filtros</button>
 <select id="fReg"><option value="">Todas as regiões</option></select>
 <select id="fTipo"><option value="">Todos os tipos</option><option value="apto">Apartamento</option><option value="casa">Casa</option><option value="terreno">Terreno</option></select>
 <select id="fMax"><option value="">Qualquer preço</option><option value="100000">Até R$ 100 mil</option><option value="200000">Até R$ 200 mil</option><option value="400000">Até R$ 400 mil</option><option value="800000">Até R$ 800 mil</option></select>
+<select id="fPag"><option value="">Qualquer pagamento</option><option value="fin">Aceita financiamento</option><option value="fgts">Aceita FGTS</option><option value="parc">Aceita parcelamento</option></select>
+<select id="fOcu"><option value="">Qualquer ocupação</option><option value="livre">Sem os ocupados</option><option value="deso">Só desocupados e terrenos</option></select>
 <select id="fOrd"><option value="best">Melhores primeiro</option><option value="date">Acontece primeiro</option><option value="cheap">Menor preço</option></select>
 </div>
 <div id="chg"></div>
@@ -297,9 +319,14 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 <li>Caixa: lista oficial (PB e RN) e página de cada imóvel.</li>
 <li>Banco do Brasil, Comprei (PGFN), Leilões PB, Leilões Monteiro, Zuk, Mega, Pestana e Leilões Judiciais.</li>
 <li>VivaReal, FipeZAP (out/2026) e Copom (Selic 13,75%).</li>
+<li>Chaves na Mão (3.600 anúncios de nov/2026) somado à base anterior.</li>
+<li>Matrículas da Caixa lidas por reconhecimento de texto, direto do PDF oficial.</li>
 <li>Dados de 20/11/2026.</li></ul></div>
 </div>
 </section>
+<footer class="ft">
+<b>Radar de Leilões</b> é uma triagem independente, feita a partir de páginas públicas da Caixa, do Banco do Brasil, do Comprei (PGFN) e de leiloeiros oficiais, e de anúncios de mercado. Não é laudo de avaliação, parecer jurídico nem recomendação de investimento, e não temos vínculo com bancos ou leiloeiros. Preços, datas e condições mudam: vale sempre o que está no edital e na página oficial. Dados conferidos em 20/11/2026.
+</footer>
 </main>
 <nav class="bnav" id="bnav">
 <button data-v="lista" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Imóveis</button>
@@ -317,6 +344,6 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 </div></div>
 <div class="ov" id="ov"></div>
 <aside class="dr" id="dr" role="dialog" aria-modal="true"><div class="dh" id="dh"></div><div class="db" id="db"></div><div class="dfoot" id="dfoot"></div></aside>
-<script src="app.js?v=4" defer></script>
+<script src="app.js?v=5" defer></script>
 </body>
 </html>
