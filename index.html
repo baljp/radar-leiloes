@@ -10,9 +10,12 @@
 <meta name="tdm-reservation" content="1">
 <meta name="tdm-policy" content="https://baljp.github.io/radar-leiloes/.well-known/tdmrep.json">
 <meta name="theme-color" content="#1d2458">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
+<meta name="darkreader-lock">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,9 +31,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer crossorigin="anonymous"></script>
+<script src="vendor/c.js" defer></script>
 <style>
-:root{
+:root{color-scheme:only light;
 --navy:#141b45;--indigo:#26307e;--violet:#5b45b8;--blue:#2f63d6;--periw:#7a86e8;
 --bg:#f3f4f9;--card:#fff;--line:#e3e6f0;--line2:#d2d6e6;--txt:#151a33;--mut:#5f6680;--mut2:#8a90a8;
 --pos:#127343;--posbg:#e2f3ea;--amb:#a15c05;--ambbg:#fbf0dc;--neg:#b1262a;--negbg:#fbe5e4;
@@ -40,7 +43,7 @@
 --safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:only light;background:#f3f4f9;forced-color-adjust:none}
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:var(--blue)}
 button{font-family:inherit}
@@ -142,7 +145,7 @@ h2{font-family:var(--serif);font-size:24px;margin:6px 0 4px;color:var(--navy)}
 .dh .a{color:#cfd4f4;font-size:13.5px}
 .dh .cd{margin-top:10px;font-size:13px}.dh .cdn{color:#fff}.dh .mut{color:#b9c0ee}
 .da{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.da .w{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:10px;font:600 13px var(--sans);padding:9px 12px;cursor:pointer;text-decoration:none}
+.da .w.wa{background:#1fa855;border-color:#1fa855}.da .w{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:10px;font:600 13px var(--sans);padding:9px 12px;cursor:pointer;text-decoration:none}
 .db{overflow:auto;padding:18px 22px 110px;-webkit-overflow-scrolling:touch;flex:1}
 .dfoot{position:absolute;left:0;right:0;bottom:0;padding:12px 22px calc(12px + var(--safe-b));background:rgba(243,244,249,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
 .dfoot a{flex:1;text-align:center;text-decoration:none;padding:13px;font-size:15px}
@@ -199,6 +202,14 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 @media (min-width:761px) and (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{body *{display:none!important}body:after{content:'Radar de Leilões — impressão desativada.';display:block}}
+.pwa{position:fixed;inset:0;z-index:80;background:linear-gradient(160deg,#121840,#26307e 60%,#4a3a9e);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
+.pwa[hidden]{display:none}.pwc{max-width:380px;text-align:center}.pwc img{border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.pwc h3{font-family:var(--serif);font-size:26px;margin:18px 0 8px}.pwc p{color:#cfd4f4;margin:0 0 22px;font-size:15.5px}
+.pwc .b1{width:100%;padding:15px;font-size:16px;background:#fff;color:#26307e}
+.pwh{margin-top:14px;font-size:14.5px;color:#e3e6fb;text-align:left;background:rgba(255,255,255,.1);border-radius:12px;padding:0 14px;max-height:0;overflow:hidden;transition:all .2s}
+.pwh.on{padding:12px 14px;max-height:260px}.pwh ol{margin:0;padding-left:18px}.pwh li{margin:4px 0}
+.pwl{margin-top:18px;background:none;border:0;color:#b9c0ee;font:500 14px var(--sans);text-decoration:underline;cursor:pointer}
+.docs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.docs a{text-decoration:none}
 </style>
 </head>
 <body>
@@ -296,8 +307,16 @@ main{padding:20px 16px calc(96px + var(--safe-b))}
 <button data-v="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Agenda</button>
 <button data-v="mercado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Mercado</button>
 </nav>
+<div class="pwa" id="pwa" hidden><div class="pwc">
+<img src="icons/icon-192.png" alt="" width="72" height="72">
+<h3>Instale o Radar de Leilões</h3>
+<p>Fica na tela inicial como um aplicativo: abre mais rápido, em tela cheia e guarda os imóveis que você acompanha.</p>
+<button class="b1" id="pwaBtn">Instalar agora</button>
+<div class="pwh" id="pwaHow"></div>
+<button class="pwl" id="pwaSkip">Continuar no navegador</button>
+</div></div>
 <div class="ov" id="ov"></div>
 <aside class="dr" id="dr" role="dialog" aria-modal="true"><div class="dh" id="dh"></div><div class="db" id="db"></div><div class="dfoot" id="dfoot"></div></aside>
-<script src="app.js?v=3" defer></script>
+<script src="app.js?v=4" defer></script>
 </body>
 </html>

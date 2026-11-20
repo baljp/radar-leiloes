@@ -191,7 +191,29 @@ Disallow: /
 User-agent: ia_archiver
 Disallow: /
 
-User-agent: *
-Disallow: /d.bin
-Disallow: /app.js
+User-agent: facebookexternalhit
 Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: *
+Disallow: /radar-leiloes/d.bin
+Disallow: /radar-leiloes/app.js
+Disallow: /radar-leiloes/i/
+Disallow: /radar-leiloes/vendor/
