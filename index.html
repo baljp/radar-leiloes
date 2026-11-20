@@ -265,6 +265,7 @@ ul.ck li.n{font-weight:600;color:#7b1a1d}
 <select id="fMax"><option value="">Qualquer preço</option><option value="100000">Até R$ 100 mil</option><option value="200000">Até R$ 200 mil</option><option value="400000">Até R$ 400 mil</option><option value="800000">Até R$ 800 mil</option></select>
 <select id="fPag"><option value="">Qualquer pagamento</option><option value="fin">Aceita financiamento</option><option value="fgts">Aceita FGTS</option><option value="parc">Aceita parcelamento</option></select>
 <select id="fOcu"><option value="">Qualquer ocupação</option><option value="livre">Sem os ocupados</option><option value="deso">Só desocupados e terrenos</option></select>
+<select id="fEnc"><option value="">Em andamento</option><option value="1">Já encerrados</option></select>
 <select id="fConf"><option value="">Qualquer confiança</option><option value="AB">Só confiança alta e boa</option><option value="A">Só confiança alta</option></select>
 <select id="fOrd"><option value="best">Melhores primeiro</option><option value="date">Acontece primeiro</option><option value="cheap">Menor preço</option></select>
 </div>
@@ -301,6 +302,15 @@ ul.ck li.n{font-weight:600;color:#7b1a1d}
 <div class="pn" style="margin-top:16px"><h3>Brejo e Pedra da Boca: quanto custa hoje</h3><div class="s">Nessas cidades quase não há leilão: varremos Caixa, Banco do Brasil, Comprei, o agregador Leilão Imóvel e cinco leiloeiros da Paraíba em 20/11/2026. Abaixo, o preço pedido nos anúncios comuns, para servir de régua quando um leilão aparecer.</div><div class="tw"><table class="cmp" id="brejo"></table></div><p class="note" id="brejoN"></p></div>
 </section>
 <section class="view" id="v-metodo">
+<h2>Como ler este site</h2>
+<div class="pn" style="margin-bottom:18px"><ul style="margin:0;padding-left:18px;line-height:1.65">
+<li><b>Preço mínimo</b> é o lance inicial ou o valor de venda direta publicado pela fonte oficial.</li>
+<li><b>Vale no mercado</b> é uma estimativa feita com anúncios de imóveis parecidos e próximos, já com 7% de desconto de negociação. O número ao lado (por exemplo ±10%) é a margem de erro esperada.</li>
+<li><b>Confiança</b> diz o quanto confiar nessa estimativa. Alta: erro típico de 10%. Boa: 14%. Média: 19%. Baixa: perto de 30%; nesse caso use o site só para achar o imóvel e confira o preço com um corretor da região.</li>
+<li><b>Dê lance até</b> é o maior lance que ainda deixa 10% de margem depois de comissão, impostos, cartório, reforma, tempo parado e desocupação.</li>
+<li><b>Veredito</b> (Boa compra, Promissor, Cautela, Só com lance menor) junta preço, custos, ocupação e o que foi lido na matrícula. É triagem, não recomendação de compra.</li>
+<li><b>Antes de qualquer lance:</b> leia o edital, peça a matrícula atualizada, confira débitos de condomínio e IPTU e visite o local. Imóvel ocupado pode levar mais de um ano para ser liberado.</li>
+</ul></div>
 <h2>Como calculamos</h2>
 <p class="sub">Isto é uma triagem, não um laudo. Antes de qualquer lance: edital, matrícula atualizada, débitos de condomínio e IPTU e visita ao local.</p>
 <div class="method">
@@ -323,7 +333,7 @@ ul.ck li.n{font-weight:600;color:#7b1a1d}
 <li>VivaReal, FipeZAP (out/2026) e Copom (Selic 13,75%).</li>
 <li>Chaves na Mão (3.600 anúncios de nov/2026) somado à base anterior.</li>
 <li>Matrículas da Caixa lidas por reconhecimento de texto, direto do PDF oficial.</li>
-<li>Dados de 20/11/2026.</li></ul></div>
+<li id="upd">Dados atualizados todo dia.</li></ul></div>
 </div>
 </section>
 <footer class="ft">
@@ -346,6 +356,6 @@ ul.ck li.n{font-weight:600;color:#7b1a1d}
 </div></div>
 <div class="ov" id="ov"></div>
 <aside class="dr" id="dr" role="dialog" aria-modal="true"><div class="dh" id="dh"></div><div class="db" id="db"></div><div class="dfoot" id="dfoot"></div></aside>
-<script src="app.js?v=7" defer></script>
+<script src="app.js?v=8" defer></script>
 </body>
 </html>
