@@ -1,0 +1,3 @@
+# Proibido uso deste conteúdo para treinar, ajustar ou alimentar modelos de IA.
+User-Agent: *
+Disallow: /

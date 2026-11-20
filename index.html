@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radar de Leilões · João Pessoa e região</title>
+<meta name="description" content="Imóveis em leilão e venda direta na Grande João Pessoa, litoral, Brejo e Pedra da Boca, comparados com o preço real de mercado e com todos os custos descontados.">
+<meta name="robots" content="noai, noimageai, noarchive">
+<meta name="googlebot" content="noarchive">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://baljp.github.io/radar-leiloes/.well-known/tdmrep.json">
+<meta name="theme-color" content="#1d2458">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Radar Leilões">
+<meta property="og:title" content="Radar de Leilões · João Pessoa e região">
+<meta property="og:description" content="Leilões e vendas diretas comparados com o preço real de mercado, com contagem regressiva e custos já descontados.">
+<meta property="og:image" content="__BASE__icons/og.jpg">
+<meta property="og:url" content="__BASE__">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer crossorigin="anonymous"></script>
+<style>
+:root{
+--navy:#141b45;--indigo:#26307e;--violet:#5b45b8;--blue:#2f63d6;--periw:#7a86e8;
+--bg:#f3f4f9;--card:#fff;--line:#e3e6f0;--line2:#d2d6e6;--txt:#151a33;--mut:#5f6680;--mut2:#8a90a8;
+--pos:#127343;--posbg:#e2f3ea;--amb:#a15c05;--ambbg:#fbf0dc;--neg:#b1262a;--negbg:#fbe5e4;
+--prom:#4a3fb0;--prombg:#ecebfc;--org:#94481a;--orgbg:#f7e8de;--gry:#5b6075;--grybg:#eceef4;
+--sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;--serif:'Source Serif 4',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+--r:14px;--shadow:0 1px 2px rgba(20,27,69,.06),0 8px 24px -14px rgba(20,27,69,.22);
+--safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+button{font-family:inherit}
+.num{font-variant-numeric:tabular-nums}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.mut{color:var(--mut)}
+/* ---------- topo ---------- */
+.band{background:radial-gradient(1200px 400px at 85% -10%,rgba(122,134,232,.35),transparent 60%),linear-gradient(115deg,#121840 0%,#202a72 52%,#4a3a9e 100%);color:#fff;padding-top:env(safe-area-inset-top,0)}
+.bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 22px}
+.logo{white-space:nowrap;display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:19px;letter-spacing:.1px;color:#fff;text-decoration:none}
+.logo img{width:30px;height:30px;border-radius:8px}
+.tnav{display:flex;gap:4px;margin-left:12px}
+.tnav button{white-space:nowrap;background:none;border:0;color:#c9cff2;font:500 14px var(--sans);padding:8px 13px;border-radius:999px;cursor:pointer}
+.tnav button.on{background:rgba(255,255,255,.14);color:#fff}
+.tnav button:hover{color:#fff}
+.inst{margin-left:auto;background:#fff;color:var(--indigo);border:0;font:600 13px var(--sans);padding:8px 14px;border-radius:999px;cursor:pointer;display:none}
+.hero{max-width:1240px;margin:0 auto;padding:18px 22px 86px}
+.hero h1{font-family:var(--serif);font-size:clamp(26px,4.2vw,42px);line-height:1.12;margin:0 0 10px;font-weight:700;max-width:760px;letter-spacing:-.2px}
+.hero p{margin:0;color:#cfd4f4;max-width:640px;font-size:16px}
+.kp{max-width:1240px;margin:-64px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.k{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px 18px;border:1px solid rgba(255,255,255,.6)}
+.k .l{font-size:12px;color:var(--mut);font-weight:500}
+.k .v{font:700 28px var(--sans);letter-spacing:-.5px;margin-top:2px;color:var(--navy)}
+.k .d{font-size:12.5px;color:var(--mut2)}
+.k.hl{background:linear-gradient(135deg,#2a3488,#5b45b8);color:#fff;border:0}.k.hl .l,.k.hl .d{color:#d6daf8}.k.hl .v{color:#fff}
+main{max-width:1240px;margin:0 auto;padding:26px 22px 120px}
+.view{display:none}.view.on{display:block}
+h2{font-family:var(--serif);font-size:24px;margin:6px 0 4px;color:var(--navy)}
+.sub{color:var(--mut);margin:0 0 16px;max-width:760px}
+/* ---------- segmentos e filtros ---------- */
+.seg{display:inline-flex;background:#e6e8f2;border-radius:999px;padding:4px;gap:2px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{border:0;background:none;padding:9px 16px;border-radius:999px;font:600 13.5px var(--sans);color:var(--mut);cursor:pointer;white-space:nowrap}
+.seg button.on{background:#fff;color:var(--indigo);box-shadow:0 1px 3px rgba(20,27,69,.15)}
+.seg button i{font-style:normal;font-weight:500;color:var(--mut2);margin-left:5px}
+.fl{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.fl input{-webkit-user-select:text;user-select:text}
+.fl input,.fl select{-webkit-user-select:text;user-select:text;font:14px var(--sans);padding:10px 12px;border:1px solid var(--line2);background:#fff;color:var(--txt);border-radius:10px;min-width:0}
+.fl input{flex:1 1 220px}
+.fl select{flex:0 1 auto}
+#chg:empty{display:none}
+/* ---------- cartões ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:16px 16px 14px;display:flex;flex-direction:column;gap:12px;transition:transform .15s ease, box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,27,69,.06),0 14px 30px -14px rgba(20,27,69,.3)}
+.ch{display:flex;gap:12px;align-items:flex-start}
+.ic{flex:none;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#e9ebfb,#f1ecfd);color:var(--indigo)}
+.ic svg{width:22px;height:22px}
+.tt{font-weight:600;font-size:15.5px;line-height:1.25}
+.lc{color:var(--mut);font-size:13px;margin-top:2px}
+.rg{margin-left:auto;font-size:11px;color:var(--mut);background:var(--bg);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.cmpbar{position:relative;height:10px;border-radius:99px;background:#e9ecf6;overflow:hidden}
+.cmpbar span{position:absolute;inset:0 auto 0 0;border-radius:99px;background:linear-gradient(90deg,#2f63d6,#6b52cf)}
+.cmpl{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-top:6px}
+.cmpl b{color:var(--pos);font-weight:600}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.nums .l{font-size:11.5px;color:var(--mut)}
+.nums .v{font:600 16.5px var(--sans);letter-spacing:-.2px}
+.tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;font:600 12px var(--sans);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.v-forte{background:var(--posbg);color:var(--pos)}.v-prom{background:var(--prombg);color:var(--prom)}.v-caut{background:var(--ambbg);color:var(--amb)}
+.v-abaixo{background:var(--orgbg);color:var(--org)}.v-evit{background:var(--negbg);color:var(--neg)}.v-sem{background:var(--grybg);color:var(--gry)}
+.conf{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--mut)}
+.dots{display:inline-flex;gap:3px}.dots i{width:6px;height:6px;border-radius:50%;background:#d7dbea}.dots i.on{background:var(--indigo)}
+.cf{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:12px;margin-top:auto;flex-wrap:wrap}
+.cdw{font-size:12.5px;flex:1 1 150px}
+.cdn{font:600 13px var(--mono);color:var(--blue)}.cdn.warm{color:var(--amb)}.cdn.hot{color:var(--neg)}
+.b1,.b2{border-radius:10px;font:600 13px var(--sans);padding:9px 13px;cursor:pointer;border:1px solid var(--line2);background:#fff;color:var(--txt);white-space:nowrap}
+.b1{background:linear-gradient(110deg,#2a52c9,#5b45b8);color:#fff;border:0}
+.b2.on{background:var(--prombg);border-color:#b9b0f0;color:var(--prom)}
+.more{display:block;margin:20px auto 0;padding:12px 26px;border-radius:999px;border:1px solid var(--line2);background:#fff;font:600 14px var(--sans);color:var(--indigo);cursor:pointer}
+.cnt{text-align:center;color:var(--mut2);font-size:12.5px;margin-top:8px}
+.empty{background:#fff;border:1px dashed var(--line2);border-radius:var(--r);padding:28px;text-align:center;color:var(--mut)}
+.alert{border-radius:12px;background:var(--negbg);color:#5e1416;padding:11px 14px;font-size:13.5px;margin-bottom:10px}
+.alert.w{background:var(--ambbg);color:#5a3505}
+/* ---------- painéis ---------- */
+.g2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.pn{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px}
+.pn h3{margin:0;font-size:15px}.pn .s{color:var(--mut);font-size:13px;margin:2px 0 12px}
+.ch-h{position:relative;height:300px}
+.agenda{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.day{background:#fff;border-radius:var(--r);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+.day h4{margin:0;padding:12px 14px;font:600 14px var(--sans);display:flex;justify-content:space-between;background:linear-gradient(90deg,#f4f5fc,#f6f2fd);border-bottom:1px solid var(--line)}
+.day h4 span{color:var(--mut);font-weight:500}
+.day .it{padding:10px 14px;border-bottom:1px solid #eff1f7;font-size:13.5px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.day .it:hover{background:#f8f8fd}.day .it:last-child{border-bottom:0}
+.day .it .w{flex:1}.day .it .w small{display:block;color:var(--mut)}
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.method ul{padding-left:18px;margin:8px 0}.method li{margin-bottom:5px;font-size:14px;color:#2f3550}
+/* ---------- ficha ---------- */
+.ov{position:fixed;inset:0;background:rgba(14,18,48,.45);backdrop-filter:blur(2px);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.on{opacity:1;pointer-events:auto}
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(860px,100%);background:var(--bg);z-index:50;transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.dr.on{transform:none}
+.dh{background:linear-gradient(115deg,#121840,#26307e 60%,#4a3a9e);color:#fff;padding:16px 22px 18px;padding-top:calc(16px + env(safe-area-inset-top,0px));position:relative}
+.dh .x{position:absolute;right:14px;top:calc(12px + env(safe-area-inset-top,0px));width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer}
+.dh .k1{font-size:12px;color:#b9c0ee;padding-right:50px}
+.dh h3{font-family:var(--serif);font-size:22px;margin:4px 0 2px;padding-right:40px;line-height:1.2}
+.dh .a{color:#cfd4f4;font-size:13.5px}
+.dh .cd{margin-top:10px;font-size:13px}.dh .cdn{color:#fff}.dh .mut{color:#b9c0ee}
+.da{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.da .w{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:10px;font:600 13px var(--sans);padding:9px 12px;cursor:pointer;text-decoration:none}
+.db{overflow:auto;padding:18px 22px 110px;-webkit-overflow-scrolling:touch;flex:1}
+.dfoot{position:absolute;left:0;right:0;bottom:0;padding:12px 22px calc(12px + var(--safe-b));background:rgba(243,244,249,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.dfoot a{flex:1;text-align:center;text-decoration:none;padding:13px;font-size:15px}
+.dfoot small{color:var(--mut);font-size:12px;max-width:45%}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.facts>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.facts .l{font-size:11.5px;color:var(--mut)}.facts .v{font:700 19px var(--sans);margin-top:2px;letter-spacing:-.3px}
+.sec{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.sec h4{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}
+.sec p{font-size:14px}
+.gr{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:6px;font:700 12px var(--sans);color:#fff;padding:0 6px}
+.gA{background:#127343}.gB{background:#3c8a5a}.gC{background:#b58b26}.gD{background:#94481a}
+.wf{display:grid;grid-template-columns:minmax(120px,190px) 1fr auto;gap:8px 12px;align-items:center;font-size:13.5px}
+.wf .bb{height:12px;position:relative;background:#eef0f7;border-radius:99px;overflow:hidden}.wf .bb span{position:absolute;top:0;bottom:0;border-radius:99px}
+.wf .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.cmp{width:100%;border-collapse:collapse;font-size:13px}
+.cmp th{font:600 11px var(--sans);text-transform:uppercase;letter-spacing:.4px;color:var(--mut);text-align:left;border-bottom:1px solid var(--line2);padding:6px}
+.cmp td{padding:7px 6px;border-bottom:1px solid #f0f1f6}.cmp .r{text-align:right;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+.sim{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.sim input{flex:1;min-width:200px;accent-color:#5b45b8;height:28px}
+.cond{display:grid;grid-template-columns:minmax(130px,200px) 1fr;gap:7px 16px;font-size:14px}
+.note{font-size:13px;color:var(--mut);margin:10px 0 0}
+/* ---------- navegação inferior (celular) ---------- */
+.bnav{display:none}
+@media (max-width:1020px){
+.tnav button[data-v=metodo]{display:none}
+.kp{grid-template-columns:repeat(2,1fr)}
+.g2,.method{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+.tnav{display:none}
+.bar{padding:12px 16px}
+.hero{padding:6px 16px 78px}.hero p{font-size:14.5px}
+.kp{padding:0 16px;gap:10px;margin-top:-60px}
+.k{padding:12px 14px}.k .v{font-size:23px}
+main{padding:20px 16px calc(96px + var(--safe-b))}
+.cards{grid-template-columns:1fr}
+.fl select{flex:1 1 calc(50% - 4px)}
+.bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 6px calc(6px + var(--safe-b))}
+.bnav button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font:600 11px var(--sans);color:var(--mut2);padding:6px 0;cursor:pointer}
+.bnav button svg{width:22px;height:22px}
+.bnav button.on{color:var(--indigo)}
+.dr{top:auto;height:94vh;height:94dvh;width:100%;border-radius:18px 18px 0 0;overflow:hidden;transform:translateY(102%)}
+.dh{padding-top:18px;border-radius:18px 18px 0 0}.dh .x{top:12px}
+.dh h3{font-size:19px}
+.db{padding:14px 14px 120px}
+.facts{grid-template-columns:1fr 1fr}
+.wf{grid-template-columns:104px 1fr auto;font-size:12.5px;gap:8px}
+.cond{grid-template-columns:1fr}
+.cond>div:nth-child(odd){color:var(--mut);font-size:12.5px;margin-top:6px}
+.dfoot{padding:10px 14px calc(10px + var(--safe-b))}
+}
+@media (min-width:761px) and (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{body *{display:none!important}body:after{content:'Radar de Leilões — impressão desativada.';display:block}}
+</style>
+</head>
+<body>
+<div class="band">
+<div class="bar">
+<a class="logo" href="./"><img src="icons/icon-192.png" alt="">Radar de Leilões</a>
+<div class="tnav" id="tnav">
+<button data-v="lista" class="on">Oportunidades</button>
+<button data-v="seg">Acompanhando</button>
+<button data-v="agenda">Agenda</button>
+<button data-v="mercado">Mercado</button>
+<button data-v="metodo">Como calculamos</button>
+</div>
+<button class="inst" id="inst">Instalar app</button>
+</div>
+<div class="hero">
+<h1>Leilões de imóveis com desconto de verdade</h1>
+<p>Cada imóvel comparado com anúncios reais do mesmo prédio, rua ou bairro, já com todos os custos do leilão descontados.</p>
+</div>
+</div>
+<div class="kp" id="kp"></div>
+<main>
+<section class="view on" id="v-lista">
+<div class="seg" id="tabs">
+<button data-t="forte" class="on">Boas compras<i id="nF"></i></button>
+<button data-t="olhar">Vale olhar<i id="nO"></i></button>
+<button data-t="todos">Todos<i id="nT"></i></button>
+</div>
+<div class="fl">
+<input type="search" id="q" placeholder="Buscar bairro, rua ou cidade" autocomplete="off">
+<select id="fReg"><option value="">Todas as regiões</option></select>
+<select id="fTipo"><option value="">Todos os tipos</option><option value="apto">Apartamento</option><option value="casa">Casa</option><option value="terreno">Terreno</option></select>
+<select id="fMax"><option value="">Qualquer preço</option><option value="100000">Até R$ 100 mil</option><option value="200000">Até R$ 200 mil</option><option value="400000">Até R$ 400 mil</option><option value="800000">Até R$ 800 mil</option></select>
+<select id="fOrd"><option value="best">Melhores primeiro</option><option value="date">Acontece primeiro</option><option value="cheap">Menor preço</option></select>
+</div>
+<div id="chg"></div>
+<div class="cards" id="cards"></div>
+<button class="more" id="more">Mostrar mais</button>
+<div class="cnt" id="cnt"></div>
+</section>
+<section class="view" id="v-seg">
+<h2>Acompanhando</h2>
+<p class="sub">Os imóveis que você marcou, do leilão mais próximo para o mais distante. Ficam salvos neste aparelho; quando algo mudar, aparece um aviso aqui.</p>
+<div id="chg2"></div>
+<div class="cards" id="cardsSeg"></div>
+</section>
+<section class="view" id="v-agenda">
+<h2>Agenda dos próximos 45 dias</h2>
+<p class="sub">Encerramentos e praças com data marcada. Compras diretas da Caixa não têm data: ficam abertas até alguém comprar.</p>
+<div class="agenda" id="ag"></div>
+</section>
+<section class="view" id="v-mercado">
+<h2>Mercado</h2>
+<p class="sub">Índice FipeZAP (série oficial da Fipe), anúncios do VivaReal de novembro de 2026 e a distribuição das oportunidades desta lista.</p>
+<div class="g2">
+<div class="pn"><h3>Preço de venda por m²</h3><div class="s">João Pessoa e média do Brasil, 2018 a 2026</div><div class="ch-h"><canvas id="cFipe"></canvas></div></div>
+<div class="pn"><h3>Aluguel contra a Selic</h3><div class="s">Quanto o aluguel rende por ano em João Pessoa</div><div class="ch-h"><canvas id="cYield"></canvas></div></div>
+</div>
+<div class="g2" style="margin-top:16px">
+<div class="pn"><h3>Apartamentos por bairro, R$/m²</h3><div class="s">Mediana dos anúncios (bairros com 8 ou mais)</div><div class="ch-h" style="height:640px"><canvas id="cBairro"></canvas></div></div>
+<div>
+<div class="pn"><h3>Onde estão as boas compras</h3><div class="s">Quantidade por região e avaliação</div><div class="ch-h" style="height:280px"><canvas id="cReg"></canvas></div></div>
+<div class="pn" style="margin-top:16px"><h3>Capitais do Nordeste</h3><div class="s">R$/m² de venda (FipeZAP, out/2026)</div><div class="ch-h" style="height:260px"><canvas id="cNE"></canvas></div></div>
+</div>
+</div>
+</section>
+<section class="view" id="v-metodo">
+<h2>Como calculamos</h2>
+<p class="sub">Isto é uma triagem, não um laudo. Antes de qualquer lance: edital, matrícula atualizada, débitos de condomínio e IPTU e visita ao local.</p>
+<div class="method">
+<div class="pn"><h3>Valor de mercado</h3><ul>
+<li><b>Mesmo prédio:</b> dois ou mais anúncios com o mesmo endereço e número.</li>
+<li><b>Mesma rua:</b> três ou mais anúncios na rua.</li>
+<li><b>Bairro:</b> mediana do VivaReal (nov/2026) somada à base de 5.217 anúncios corrigidos pelo FipeZAP.</li>
+<li>Com mais de uma referência, vale a <b>mais baixa</b>.</li>
+<li>Anúncios que são o próprio leilão republicado são retirados.</li>
+<li>A avaliação do edital não entra na conta: só vira alerta quando destoa do mercado.</li></ul></div>
+<div class="pn"><h3>Custos e selo</h3><ul>
+<li>Leiloeiro: 5% (compra direta da Caixa: sem comissão).</li>
+<li>ITBI e cartório: 6% do lance. Reforma: 6% do mercado.</li>
+<li>Meses sem renda: 3 (terreno), 8 (ocupação desconhecida) ou 14 (ocupado).</li>
+<li>Pior caso: +10% de dívidas, 8% de desocupação, 6% de advogado.</li>
+<li><b>Boa compra:</b> sobra mais de 10% mesmo no pior caso, com amostra firme e sem alerta.</li></ul></div>
+<div class="pn"><h3>Fontes</h3><ul>
+<li>Caixa: lista oficial (PB e RN) e página de cada imóvel.</li>
+<li>Banco do Brasil, Comprei (PGFN), Leilões PB, Leilões Monteiro, Zuk, Mega, Pestana e Leilões Judiciais.</li>
+<li>VivaReal, FipeZAP (out/2026) e Copom (Selic 13,75%).</li>
+<li>Dados de 20/11/2026.</li></ul></div>
+</div>
+</section>
+</main>
+<nav class="bnav" id="bnav">
+<button data-v="lista" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Imóveis</button>
+<button data-v="seg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Acompanho</button>
+<button data-v="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Agenda</button>
+<button data-v="mercado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Mercado</button>
+</nav>
+<div class="ov" id="ov"></div>
+<aside class="dr" id="dr" role="dialog" aria-modal="true"><div class="dh" id="dh"></div><div class="db" id="db"></div><div class="dfoot" id="dfoot"></div></aside>
+<script src="app.js?v=3" defer></script>
+</body>
+</html>
