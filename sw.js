@@ -1,4 +1,4 @@
-const V='radar-d6b1ed20';const SHELL=['./','index.html','app.js?v=d6b1ed20','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','vendor/c.js'];
+const V='radar-c4df1949';const SHELL=['./','index.html','app.js?v=c4df1949','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','vendor/c.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL.map(u=>new Request(u,{cache:'reload'})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET')return;
